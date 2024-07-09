@@ -1,0 +1,18 @@
+.validate-button {
+  padding: 15px 0;
+  background-color: #2F80ED;
+  text-align: center;
+  border-radius: 10px;
+  a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 800px) {
+ .validate-button {
+  padding: 10px 0;
+ }
+}

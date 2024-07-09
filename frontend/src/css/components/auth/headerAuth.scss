@@ -1,0 +1,64 @@
+.headerAuth {
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    img{
+      width: 50px;
+      margin-right: 10px;
+    }
+
+    span{
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  .presentation-text {
+    width: 80%;
+    margin-top: 15%;
+
+    p{
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  .title-page {
+    color: #2F80ED;
+    font-size: 26px;
+    text-align: center;
+    margin-top: 15%;
+    font-weight: bold
+  }
+
+}
+
+@media (min-width: 800px) {
+  .headerAuth {
+
+    .logo {
+
+      span{
+        font-size: 14px;
+      }
+    }
+
+    .presentation-text {
+
+      p{
+        font-size: 14px;
+      }
+    }
+
+    .title-page {
+      color: #2F80ED;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 15%;
+      font-weight: bold
+    }
+
+  }
+}

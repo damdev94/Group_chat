@@ -1,0 +1,76 @@
+.LayoutChat-container {
+  display: flex;
+  position: relative;
+
+  .sidebar-open {
+    display: block !important;
+  }
+
+  .sidebar {
+    z-index: 1;
+    display: none;
+    background-color: #0B090C;
+    width: 85%;
+    height: 100vh;
+    position: absolute;
+
+    .close-icon {
+      padding: 10px;
+      font-size: 22px;
+      color: white;
+      position: absolute;
+      top: 10px;
+      right: -50px;
+      background-color: #0B090C;
+      border-radius: 5px;
+    }
+
+    .title-channel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px ;
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: white;
+
+      p{
+        margin: 0;
+        font-weight: 600;
+      }
+      svg {
+        padding: 10px;
+        background-color: #252329;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .content {
+    background-color: #252329;
+    width: 100vh;
+    height: 100vh;
+
+    .banner {
+      color: #F2F2F2;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      box-shadow: 0px 7px 10px rgba($color: #000000, $alpha: 0.4);
+
+      h1{
+        font-size: 26px;
+        font-weight: 400;
+        margin-left: 20px;
+      }
+
+      .burger-icon {
+        font-size: 26px;
+        padding: 20px;
+      }
+
+
+    }
+
+  }
+}

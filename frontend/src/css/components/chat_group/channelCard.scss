@@ -1,0 +1,20 @@
+.channelCard-container{
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+
+  .channel-logo {
+    width: 30px;
+    text-align: center;
+    padding: 10px;
+    background-color: #252329;
+    border-radius: 10px;
+  }
+
+  .channel-title {
+    margin-left: 20px;
+  }
+}

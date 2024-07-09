@@ -1,0 +1,31 @@
+.social-link {
+  margin-top: 10%;
+  width: 80%;
+
+  p {
+    font-size: 18px;
+    color: #828282;
+  }
+
+  .social-logos {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10%;
+
+    svg {
+      font-size: 30px;
+      color: #828282;
+      padding: 10px;
+      border: solid 1px #828282;
+      border-radius: 50%;
+    }
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .social-link {
+    p {
+      text-align: center;
+    }
+  }
+}
