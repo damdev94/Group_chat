@@ -1,11 +1,11 @@
 import React from 'react'
 import '../../css/components/chat_group/channelCard.scss'
 
-function ChannelsCard( {channel, id , closeSidebar, channelClickedName, channelClickedId} ) {
+function ChannelsCard( {channel, id , toggleSidebar, channelClickedName, channelClickedId} ) {
 
 
   const handleCLick = () => {
-    closeSidebar()
+    toggleSidebar()
     channelClickedName(channel)
     channelClickedId(id)
   }

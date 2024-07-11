@@ -35,7 +35,7 @@ function MessageCard({text, userList, author}) {
         </div>
 
         <div className="infos">
-          {authorInfo ? authorInfo.email : 'loading'}
+          {authorInfo ? authorInfo.pseudo : 'loading'}
         </div>
       </div>
 

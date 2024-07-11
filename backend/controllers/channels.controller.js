@@ -16,7 +16,7 @@ exports.index = (req, res) => {
 exports.create = (req, res) => {
   const connectedUserId = req.user._id;
 
-  new Channel({ name: req.body.name, members: [connectedUserId] })
+  new Channel({ name: req.body.name, members: [connectedUserId], description: req.body.description })
     .save()
     .then((channel) => {
       console.log(channel);

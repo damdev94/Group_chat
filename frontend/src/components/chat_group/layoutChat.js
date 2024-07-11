@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import { useAuth } from '../../functions/auth/authContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +6,7 @@ import { faXmark, faBars, faPlus } from '@fortawesome/free-solid-svg-icons';
 import '../../css/components/chat_group/layout.scss'
 import ChannelCard from './channelCard';
 import MessageCard from './messageCard';
+import NewChannelForm from './newChannelForm';
 
 function LayoutChat( {channels, messages} ) {
 
@@ -18,9 +19,18 @@ function LayoutChat( {channels, messages} ) {
   const [channelOpenId, setChannelOpenId] = useState('')
   const [userList, SetUserList] = useState(null)
   const [newMessage, setNewMessage] = useState('')
+  const [newChannelName, setNewChannelName] = useState('')
+  const [newChannelDecription, setNewChannelDescription] = useState('')
+  const [isNewChannelOpen, setIsNewChannelOpen] = useState(false)
 
-  const closeSidebar = () => {
-    setIsSidebarOpen(false)
+   const formRef = useRef(null);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen)
+  }
+
+  const toggleNewChannelForm = () => {
+    setIsNewChannelOpen(!isNewChannelOpen)
   }
 
   const channelClickedName = (name) => {
@@ -51,6 +61,14 @@ function LayoutChat( {channels, messages} ) {
     e.target.scrollLeft = e.target.scrollWidth
   }
 
+  const handleNewChannelName = (e) => {
+    setNewChannelName(e.target.value)
+  }
+
+  const handleNewChannelDescription = (e) => {
+    setNewChannelDescription(e.target.value)
+  }
+
   const handleCreateMessage = () => {
 
     const currentUser = user
@@ -76,20 +94,59 @@ function LayoutChat( {channels, messages} ) {
     })
   }
 
+  const handleCreateChannel = () => {
 
+    const channelData = {
+      name : newChannelName,
+      description : newChannelDecription
+    }
+
+    axios.post('http://localhost:5000/chat', channelData, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(res => {
+      console.log('Channel created')
+      setNewChannelName('')
+      setNewChannelDescription('')
+    })
+    .catch(error => {
+      console.log('Errror creating channel', error)
+    })
+  }
+
+  const handleClickOutside = (event) => {
+    if (formRef.current && !formRef.current.contains(event.target)) {
+      setIsNewChannelOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    if (isNewChannelOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    };
+  }, [isNewChannelOpen])
 
   return (
     <div className='LayoutChat-container'>
 
       <div className={`sidebar ${isSidebarOpen ? 'sidebar-open' : '' } `}>
-        <FontAwesomeIcon onClick={() => setIsSidebarOpen(false)} className='close-icon' icon={faXmark} />
+        <FontAwesomeIcon onClick={toggleSidebar} className='close-icon' icon={faXmark} />
 
         { isChannelOpen ? (
 
         <>
           <div className="title-channel">
             <p>channels</p>
-            <FontAwesomeIcon className='iconPlus' icon={faPlus} />
+            <FontAwesomeIcon className='iconPlus' icon={faPlus} onClick={toggleNewChannelForm} />
           </div>
 
             <div className='channels'>
@@ -98,7 +155,7 @@ function LayoutChat( {channels, messages} ) {
                           key={channel._id}
                           channel={channel}
                           id={channel._id}
-                          closeSidebar={closeSidebar}
+                          toggleSidebar={toggleSidebar}
                           channelClickedName = {channelClickedName}
                           channelClickedId = {channelCLickedId}
                         />)
@@ -112,6 +169,17 @@ function LayoutChat( {channels, messages} ) {
       </div>
 
       <div className="content">
+
+        <div className={`new-channel ${isNewChannelOpen ? 'new-channel-open' : ''}`} ref={formRef}>
+          <NewChannelForm
+            handleCreateChannel={handleCreateChannel}
+            handleNewChannelName={handleNewChannelName}
+            handleNewChannelDescription={handleNewChannelDescription}
+            newChannelDecription={newChannelDecription}
+            newChannelName={newChannelName}
+            toggleNewChannelForm = {toggleNewChannelForm}
+          />
+        </div>
 
         <div className='banner'>
 
