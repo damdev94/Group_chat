@@ -42,7 +42,7 @@ function Chat() {
         console.error('Error fetching messages', error)
       })
 
-  }, [])
+  }, [messages])
 
 
   return (

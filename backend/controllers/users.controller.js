@@ -58,7 +58,7 @@ exports.signUp = (req, res) => {
 
         delete body.password
 
-        new user({email : body.email, phone: body.phone, photo: body.photo, password : hash})
+        new user({email : body.email, phone: body.phone, photo: body.photo, pseudo: body.pseudo, password : hash})
           .save()
           .then((user) => {
             console.log(user)

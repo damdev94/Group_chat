@@ -24,4 +24,5 @@ router.post('/chat', channelsController.create)
 router.get('/chat/message', messagesController.index)
 router.post('/chat/message', messagesController.create)
 
+
 module.exports = router

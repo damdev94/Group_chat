@@ -1,6 +1,7 @@
 .LayoutChat-container {
   display: flex;
   position: relative;
+  height: 100%;
 
   .sidebar-open {
     display: block !important;
@@ -47,9 +48,10 @@
   }
 
   .content {
+    position: relative;
     background-color: #252329;
     width: 100vh;
-    height: 100vh;
+    min-height: 100vh;
 
     .banner {
       color: #F2F2F2;
@@ -68,9 +70,53 @@
         font-size: 26px;
         padding: 20px;
       }
-
-
+    }
+    .messages {
+      margin-top: 30px;
     }
 
+    .new-message {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+
+      .input-new-message {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        position: relative;
+        background-color: #252329;
+
+        input {
+          padding-left: 20px;
+          padding-right: 50px;
+          height: 50px;
+          width: 100%;
+          border-radius: 10px;
+          background-color: #3C393F;
+          border: none;
+          color: white;
+          font-size: 18px;
+
+          &::placeholder {
+            margin-left: -20px;
+            font-size: 16px;
+          }
+        }
+        svg {
+          position: absolute;
+          right: 35px;
+          color: white;
+          font-size: 18px;
+          padding: 8px;
+          background-color: #2F80ED;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  .margin-bottom-div {
+    height: 80px;
   }
 }

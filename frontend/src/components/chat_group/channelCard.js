@@ -1,16 +1,17 @@
 import React from 'react'
 import '../../css/components/chat_group/channelCard.scss'
 
-function ChannelsCard( {title, id , closeSidebar, channelClickedName, channelClickedId} ) {
+function ChannelsCard( {channel, id , closeSidebar, channelClickedName, channelClickedId} ) {
+
 
   const handleCLick = () => {
     closeSidebar()
-    channelClickedName({title})
+    channelClickedName(channel)
     channelClickedId(id)
   }
 
   const wordsLetters = () => {
-    const words = title.split(" ")
+    const words = channel.name.split(" ")
     let firstLetters = ""
 
     if(words.length === 1) {
@@ -25,7 +26,7 @@ function ChannelsCard( {title, id , closeSidebar, channelClickedName, channelCli
   return (
     <div className='channelCard-container' onClick={handleCLick}>
       <div className='channel-logo'>{wordsLetters()}</div>
-      <div className='channel-title'>{title}</div>
+      <div className='channel-title'>{channel.name}</div>
     </div>
   )
 }

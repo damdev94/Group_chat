@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { faEnvelope, faLock, faPhone } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faLock, faPhone, faUser } from '@fortawesome/free-solid-svg-icons'
 import ValidateButton from '../../components/validateButton'
 import '../../css/pages/auth.scss'
 import { Link, useNavigate } from 'react-router-dom'
@@ -15,6 +15,7 @@ function SignUp() {
   const [emailData, setEmailData] = useState('')
   const [passwordData, setPasswordData] = useState('')
   const [phoneData, setPhoneData] = useState('')
+  const [pseudoData, setPseudoData] = useState('')
 
   const submitSignup = (e) => {
     e.preventDefault()
@@ -23,6 +24,7 @@ function SignUp() {
       email: emailData,
       password: passwordData,
       phone: phoneData,
+      pseudo : pseudoData
     };
 
     axios.post('http://localhost:5000/signup', userData, {
@@ -72,6 +74,14 @@ function SignUp() {
           value={phoneData}
           onChange={(e) => setPhoneData(e.target.value)}
           icon={faPhone}
+        />
+
+        <InputForm
+          type={'text'}
+          placeholder={'Pseudo'}
+          value={pseudoData}
+          onChange={(e) => setPseudoData(e.target.value)}
+          icon={faUser}
         />
 
         <div className="signin-link">

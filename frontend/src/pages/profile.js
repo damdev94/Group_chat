@@ -69,6 +69,10 @@ function Profile() {
             <img src={userInfos && (`http://localhost:5000${userInfos.photo}`)} alt='profile-picture' />
           </div>
           <div className="info">
+            <h4>pseudo</h4>
+            <p>{userInfos && (userInfos.pseudo)}</p>
+          </div>
+          <div className="info">
             <h4>Phone</h4>
             <p>{userInfos && (userInfos.phone)}</p>
           </div>
