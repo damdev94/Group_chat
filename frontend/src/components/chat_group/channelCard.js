@@ -3,6 +3,8 @@ import '../../css/components/chat_group/channelCard.scss'
 
 function ChannelsCard( {channel, id , toggleSidebar, channelClickedName, channelClickedId} ) {
 
+  console.log(channel.name)
+
 
   const handleCLick = () => {
     toggleSidebar()
@@ -11,16 +13,20 @@ function ChannelsCard( {channel, id , toggleSidebar, channelClickedName, channel
   }
 
   const wordsLetters = () => {
-    const words = channel.name.split(" ")
-    let firstLetters = ""
 
-    if(words.length === 1) {
-      firstLetters += words[0][0]
-    }else if(words.length > 1) {
-      firstLetters += words[0][0] + words[1][0]
+    if (channel && channel.name) {
+      const words = channel.name.split(' ')
+      let firstLetters = '';
+
+      if (words.length === 1) {
+        firstLetters += words[0][0];
+      } else if (words.length > 1) {
+        firstLetters += words[0][0] + words[1][0];
+      }
+
+      return firstLetters.toUpperCase()
     }
-
-    return firstLetters.toUpperCase()
+    return ''
   }
 
   return (

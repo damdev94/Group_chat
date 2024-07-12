@@ -26,7 +26,7 @@ function Chat() {
         console.error('Error fetching channels', error)
       })
 
-  }, [])
+  }, [token])
 
   useEffect(() => {
 
@@ -42,12 +42,12 @@ function Chat() {
         console.error('Error fetching messages', error)
       })
 
-  }, [messages])
-
+  }, [token])
 
   return (
     <div>
-      <LayoutChat channels={channels} messages={messages}/>
+    {console.log('chat')}
+      <LayoutChat channels={channels} messages={messages} />
     </div>
   )
 }

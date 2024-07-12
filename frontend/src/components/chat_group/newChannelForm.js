@@ -32,7 +32,7 @@ function NewChannelForm({
             value={newChannelName}
           />
           <textarea
-            class="input-description"
+            className="input-description"
             placeholder="Description"
             value={newChannelDecription}
             onChange={handleNewChannelDescription}>

@@ -10,7 +10,7 @@
   .sidebar {
     z-index: 1;
     display: none;
-    background-color: #0B090C;
+    background-color: #171617;
     width: 85%;
     height: 100vh;
     position: absolute;
@@ -44,6 +44,17 @@
         background-color: #252329;
         border-radius: 10px;
       }
+    }
+
+    .footer-login {
+      width:100%;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: absolute;
+      bottom: 0;
+
     }
   }
 
@@ -86,6 +97,38 @@
     }
     .messages {
       margin-top: 30px;
+
+      .message-card-container {
+        color: white;
+
+        .message-infos{
+          display: flex;
+          padding: 10px 20px;
+          color: #828282;
+
+          .author-avatar {
+            width: 60px;
+
+            img {
+              width: 50px;
+              height: 50px;
+              border-radius: 10px;
+            }
+          }
+          .infos {
+            padding: 0 10px;
+          }
+        }
+
+        .text{
+          position: relative;
+          top: -35px;
+          margin-left: 75px;
+          display: flex;
+          padding: 10px 15px;
+        }
+      }
+
     }
 
     .new-message {

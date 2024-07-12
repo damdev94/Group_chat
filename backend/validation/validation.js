@@ -5,7 +5,7 @@ userValidation = (body) => {
     email : joi.string().min(2).max(30).trim().required(),
     password : joi.string().min(8).max(30).trim().required(),
     phone : joi.string().min(8).max(30).trim().required(),
-    pseudo : joi.string().min(3).max(10).trim().required()
+    pseudo : joi.string().min(3).max(20).trim().required()
   })
 
   const userValidationLogIn = joi.object({
