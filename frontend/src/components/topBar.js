@@ -1,12 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faUserGroup } from '@fortawesome/free-solid-svg-icons'
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { useAuth } from '../functions/auth/authContext'
-import '../css/components/topBar.scss'
-import logo from '../images/auth-logo.svg'
-import { Link } from 'react-router-dom';
-
+import React, { useState, useRef, useEffect } from 'react';
+import { useAuth } from '../functions/auth/authContext';
+import '../css/components/topBar.scss';
+import logo from '../images/auth-logo.svg';
+import DropdownUser from './dropdownUser'
 
 function TopBar() {
 
@@ -33,7 +29,7 @@ function TopBar() {
        <div className='topBar-container'>
         <div className="logo">
           <img src={logo} alt='logo-dev' />
-          <span>devchallenges</span>
+          <span style={{marginLeft : "10px"}}>Chat Group</span>
         </div>
         <div className="avatar">
           <img
@@ -42,15 +38,7 @@ function TopBar() {
             alt="avatar-img"
           />
           {isDropdownOpen && (
-            <div className='drop-menu' ref={dropdownRef}>
-              <div className="link">
-                <Link to='/profile'><p><FontAwesomeIcon icon={faUser} /> My profile</p></Link>
-                <Link to='/chat'><p><FontAwesomeIcon icon={faUserGroup} /> Group chat</p></Link>
-              </div>
-              <div className='logout'>
-                <p onClick={() => logout()}><FontAwesomeIcon icon={faRightFromBracket} />Logout</p>
-              </div>
-            </div>
+            <DropdownUser />
           )}
         </div>
       </div>

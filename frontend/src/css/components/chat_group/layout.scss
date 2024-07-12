@@ -97,38 +97,6 @@
     }
     .messages {
       margin-top: 30px;
-
-      .message-card-container {
-        color: white;
-
-        .message-infos{
-          display: flex;
-          padding: 10px 20px;
-          color: #828282;
-
-          .author-avatar {
-            width: 60px;
-
-            img {
-              width: 50px;
-              height: 50px;
-              border-radius: 10px;
-            }
-          }
-          .infos {
-            padding: 0 10px;
-          }
-        }
-
-        .text{
-          position: relative;
-          top: -35px;
-          margin-left: 75px;
-          display: flex;
-          padding: 10px 15px;
-        }
-      }
-
     }
 
     .new-message {

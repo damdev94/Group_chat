@@ -17,6 +17,17 @@
     }
     .infos {
       padding: 0 10px;
+      display: flex;
+
+      .author-pseudo {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .message-date {
+        margin-top: 3px;
+        margin-left: 20px;
+      }
     }
   }
 

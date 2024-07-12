@@ -8,7 +8,7 @@ function BottomSidebar({currentUser}) {
 
   return (
     <>
-      <div className='infos'>
+      <div className='user-infos'>
 
         <div className="avatar">
           <img src={currentUser ? `http://localhost:5000${currentUser.photo}` : 'loading'}alt='user-avatar'/>

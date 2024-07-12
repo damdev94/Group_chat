@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import '../../css/components/chat_group/layout.scss'
 import { useAuth } from '../../functions/auth/authContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faBars, faPlus } from '@fortawesome/free-solid-svg-icons';
-import '../../css/components/chat_group/layout.scss';
+import DropdownUser from '../dropdownUser';
 import ChannelCard from './channelCard';
 import NewChannelForm from './newChannelForm';
 import BottomSidebar from './bottomSidebar';
+import MessageCard from './messageCard';
+
 
 function LayoutChat({ channels, messages }) {
   const { token, userEmail } = useAuth();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isChannelOpen, setIsChannelOpen] = useState(true);
   const [channelOpen, setChannelOpen] = useState('');
   const [channelOpenId, setChannelOpenId] = useState('');
   const [userList, setUserList] = useState(null);
@@ -23,6 +25,7 @@ function LayoutChat({ channels, messages }) {
   const [currentUser, setCurrentUser] = useState('');
   const [channelList, setChannelList] = useState([]);
   const [messagesList, setMessagesList] = useState([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const formRef = useRef(null);
 
@@ -52,6 +55,7 @@ function LayoutChat({ channels, messages }) {
     setChannelList(channels);
     setMessagesList(messages);
   }, [channels, messages]);
+
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -85,6 +89,7 @@ function LayoutChat({ channels, messages }) {
   const handleCreateMessage = () => {
     const messageData = {
       text: newMessage,
+      author: currentUser._id,
       channel: channelOpen._id
     };
 
@@ -133,6 +138,12 @@ function LayoutChat({ channels, messages }) {
     }
   };
 
+  const toggleUserMenu = () => {
+    setIsDropdownOpen(!isDropdownOpen)
+  }
+
+  const parentComponentCss = { bottom: '55px' };
+
   useEffect(() => {
     if (isNewChannelOpen) {
       document.addEventListener('mousedown', handleClickOutside);
@@ -146,11 +157,13 @@ function LayoutChat({ channels, messages }) {
   }, [isNewChannelOpen]);
 
   return (
+
     <div className='LayoutChat-container'>
+
       <div className={`sidebar ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         <FontAwesomeIcon onClick={toggleSidebar} className='close-icon' icon={faXmark} />
 
-        {isChannelOpen && (
+
           <>
             <div className="title-channel">
               <p>channels</p>
@@ -170,11 +183,16 @@ function LayoutChat({ channels, messages }) {
               ))}
             </div>
 
-            <div className="footer-login">
+            <div className="footer-login" onClick={toggleUserMenu}>
               <BottomSidebar currentUser={currentUser} />
+              {isDropdownOpen && (
+
+                <DropdownUser css= {parentComponentCss} />
+
+              )}
             </div>
           </>
-        )}
+
       </div>
 
       <div className="content">
@@ -195,18 +213,18 @@ function LayoutChat({ channels, messages }) {
         </div>
 
         <div className='messages'>
-          {messagesList.filter((message) => message.channel === channelOpenId).map((message) => {
+
+          {messagesList
+            .filter((message) => message.channel === channelOpenId)
+            .map((message) => {
               const author = userList.find((user) => user._id === message.author);
+
               return (
-                <div key={message._id} className='message-card-container'>
-                  <div className='message-infos'>
-                    <div className='author-avatar'>
-                      <img src={author ? `http://localhost:5000${author.photo}` : 'loading'} alt='avatar' />
-                    </div>
-                    <div className='infos'>{author ? author.pseudo : 'loading'}</div>
-                  </div>
-                  <div className='text'>{message.text}</div>
-                </div>
+               <MessageCard
+                key={message._id}
+                author={author}
+                message = {message}
+               />
               );
             })}
         </div>
@@ -220,6 +238,7 @@ function LayoutChat({ channels, messages }) {
           </div>
         </div>
       </div>
+
     </div>
   );
 }

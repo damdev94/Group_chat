@@ -59,7 +59,7 @@ function SignUp() {
           onChange={(e) => setEmailData(e.target.value)}
           icon={faEnvelope}
         />
-
+        *minimum 6 characters
         <InputForm
           type='password'
           placeholder='Password'
