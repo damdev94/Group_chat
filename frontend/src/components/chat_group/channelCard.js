@@ -3,8 +3,6 @@ import '../../css/components/chat_group/channelCard.scss'
 
 function ChannelsCard( {channel, id , toggleSidebar, channelClickedName, channelClickedId} ) {
 
-  console.log(channel.name)
-
 
   const handleCLick = () => {
     toggleSidebar()

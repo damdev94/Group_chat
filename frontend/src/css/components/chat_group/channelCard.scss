@@ -5,6 +5,17 @@
   color: white;
   font-size: 22px;
   font-weight: 600;
+  transition: background-color 1s;
+
+  &:hover {
+    background-color: #252329;
+    transition: background-color 1s;
+    cursor: pointer;
+    .channel-logo {
+      background-color: #171617;
+      transition: background-color 1s;
+    }
+  }
 
   .channel-logo {
     width: 30px;

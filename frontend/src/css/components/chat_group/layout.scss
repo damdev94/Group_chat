@@ -43,6 +43,12 @@
         padding: 10px;
         background-color: #252329;
         border-radius: 10px;
+        transition: 0.3s;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.1);
+        }
       }
     }
 
@@ -61,7 +67,7 @@
   .content {
     position: relative;
     background-color: #252329;
-    width: 100vh;
+    width: 100%;
     min-height: 100vh;
 
     .new-channel {
@@ -136,11 +142,73 @@
           padding: 8px;
           background-color: #2F80ED;
           border-radius: 50%;
+          transition: border 0.3s;
+
+          &:hover {
+            cursor: pointer;
+            border: 1px solid #e5e7e6;
+          }
+
         }
       }
     }
   }
   .margin-bottom-div {
     height: 80px;
+  }
+}
+
+@media(min-width: 1000px) {
+
+    .LayoutChat-container {
+
+    .sidebar{
+      display: block;
+      position: sticky;
+      top: 0;
+      width: 30%;
+
+      svg {
+        display: block;
+      }
+
+      .close-icon{
+        display: none;
+      }
+    }
+
+
+    .content {
+      height: 100%;
+      width: 70%;
+      min-height: 100vh;
+      min-width: 100vh;
+
+      > :not(.banner):not(.new-channel) {
+        padding: 0 50px;
+      }
+
+      .banner {
+        position:sticky;
+        top: 0;
+        z-index: 2;
+        background-color: #252329;
+
+        h1 {
+          margin-left: 40px;
+        }
+        .burger-icon {
+          display: none;
+        }
+      }
+
+      .new-message {
+        width: 65%;
+        margin: 0 auto;
+        .input-new-message {
+          justify-content: center;
+        }
+      }
+    }
   }
 }

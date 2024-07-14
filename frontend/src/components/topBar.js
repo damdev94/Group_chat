@@ -2,11 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../functions/auth/authContext';
 import '../css/components/topBar.scss';
 import logo from '../images/auth-logo.svg';
-import DropdownUser from './dropdownUser'
+import DropdownUser from './dropdownUser';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 function TopBar() {
 
-  const { userInfos, logout } = useAuth()
+  const { userInfos } = useAuth()
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dropdownRef = useRef(null)
@@ -31,12 +33,12 @@ function TopBar() {
           <img src={logo} alt='logo-dev' />
           <span style={{marginLeft : "10px"}}>Chat Group</span>
         </div>
-        <div className="avatar">
+        <div className="avatar" onClick={() => setIsDropdownOpen(!isDropdownOpen)} ref={dropdownRef}>
           <img
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             src={userInfos && (`http://localhost:5000${userInfos.photo}`)}
             alt="avatar-img"
           />
+          <FontAwesomeIcon icon={faCaretDown} />
           {isDropdownOpen && (
             <DropdownUser />
           )}

@@ -6,7 +6,7 @@ function MessageCard({author, message}) {
   const messageDate = () => {
 
     const messageDateFormated = message.date.substring(0,10)
-    const messageHourFormated = message.date.substring(11,19)
+    const messageHourFormated = message.date.substring(11,16)
 
     /* const today = new Date();
     const year = today.getFullYear();
@@ -15,11 +15,10 @@ function MessageCard({author, message}) {
 
     const formattedDate = `${year}-${month}-${day}`; */
 
-    return `${messageDateFormated} At ${messageHourFormated}`
+    return `${messageDateFormated}  At  ${messageHourFormated}`
 
   }
 
-  messageDate()
 
   return (
     <div key={message._id} className='message-card-container'>

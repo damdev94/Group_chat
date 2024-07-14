@@ -28,10 +28,7 @@ function LayoutChat({ channels, messages }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const formRef = useRef(null);
-
-  useEffect(() => {
-    console.log(userList);
-  }, [userList]);
+  const inputRef = useRef(null)
 
   useEffect(() => {
     axios.get('http://localhost:5000/userinfos', {
@@ -87,10 +84,14 @@ function LayoutChat({ channels, messages }) {
   };
 
   const handleCreateMessage = () => {
+
+    const currentDate = new Date()
+
     const messageData = {
       text: newMessage,
       author: currentUser._id,
-      channel: channelOpen._id
+      channel: channelOpen._id,
+      date: currentDate.toISOString(),
     };
 
     axios.post('http://localhost:5000/chat/message', messageData, {
@@ -142,7 +143,7 @@ function LayoutChat({ channels, messages }) {
     setIsDropdownOpen(!isDropdownOpen)
   }
 
-  const parentComponentCss = { bottom: '55px' };
+  const parentComponentCss = { bottom: '55px', top: '-140px'};
 
   useEffect(() => {
     if (isNewChannelOpen) {
@@ -155,6 +156,12 @@ function LayoutChat({ channels, messages }) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isNewChannelOpen]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter'){
+      handleCreateMessage()
+    }
+  }
 
   return (
 
@@ -234,7 +241,14 @@ function LayoutChat({ channels, messages }) {
         <div className="new-message">
           <div className="input-new-message">
             <FontAwesomeIcon icon={faPlus} onClick={() => handleCreateMessage()} />
-            <input type='text' placeholder='Type a message here' value={newMessage} onChange={(e) => handleMessageData(e)} />
+            <input
+              type='text'
+              placeholder='Type a message here'
+              value={newMessage}
+              onChange={(e) => handleMessageData(e)}
+              ref={inputRef}
+              onKeyDown={handleKeyDown}
+            />
           </div>
         </div>
       </div>

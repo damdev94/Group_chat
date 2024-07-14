@@ -72,7 +72,12 @@
       padding: 10px;
       color: white;
       font-weight: 700;
+      transition: opacity 0.3s;
 
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
     }
   }
 

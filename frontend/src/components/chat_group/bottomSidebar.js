@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../css/components/chat_group/bottomSidebar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
 function BottomSidebar({currentUser}) {
 
@@ -21,7 +21,7 @@ function BottomSidebar({currentUser}) {
         </div>
 
         <div className='icon'>
-        <FontAwesomeIcon icon={faChevronDown} />
+        <FontAwesomeIcon icon={faChevronUp} />
         </div>
       </>
   )
