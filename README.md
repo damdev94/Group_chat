@@ -2,6 +2,8 @@
 
 A user-friendly chat application that allows users to communicate and manage their profiles effectively.
 
+![Design preview for the Body Mass Index Calculator coding challenge](./preview.png)
+
 ## Features
 
 - **Account Creation**: Users can sign up and create their own accounts.
